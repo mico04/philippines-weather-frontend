@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axios from "axios";
+// import axios from "axios";
 
 Vue.use(Vuex);
 
@@ -54,27 +54,29 @@ const store = new Vuex.Store({
     },
   },
   actions: {
-    async fetchWeatherData({ commit, state }, search) {
+    async fetchWeatherData({ commit, state }) {
       try {
-        commit("SET_SEARCH", search);
-        const response = await axios.get(
-          `${state.apiBase}weather?q=${search}&units=metric&APPID=${state.apiKey}`
-        );
-        const newWeatherData = {
-          name: response.data.name,
-          temp: response.data.main.temp,
-          tempMin: response.data.main.temp_min,
-          tempMax: response.data.main.temp_max,
-          feelsLike: response.data.main.feels_like,
-          description: response.data.weather[0].description,
-          icon: response.data.weather[0].icon.substring(0, 2),
-          info: response.data.weather[0].main,
-          wind: response.data.wind.speed,
-          humidity: response.data.main.humidity,
-          clouds: response.data.clouds.all,
-          country: response.data.sys.country,
-        };
-        commit("SET_WEATHER_DATA", newWeatherData);
+        commit("SET_WEATHER_DATA", state);
+
+        // commit("SET_SEARCH", search);
+        // const response = await axios.get(
+        //   `${state.apiBase}weather?q=${search}&units=metric&APPID=${state.apiKey}`
+        // );
+        // const newWeatherData = {
+        //   name: response.data.name,
+        //   temp: response.data.main.temp,
+        //   tempMin: response.data.main.temp_min,
+        //   tempMax: response.data.main.temp_max,
+        //   feelsLike: response.data.main.feels_like,
+        //   description: response.data.weather[0].description,
+        //   icon: response.data.weather[0].icon.substring(0, 2),
+        //   info: response.data.weather[0].main,
+        //   wind: response.data.wind.speed,
+        //   humidity: response.data.main.humidity,
+        //   clouds: response.data.clouds.all,
+        //   country: response.data.sys.country,
+        // };
+        // commit("SET_WEATHER_DATA", newWeatherData);
         commit("SET_ERROR", false);
       } catch (error) {
         console.log(error);
