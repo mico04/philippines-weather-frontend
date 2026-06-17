@@ -6,11 +6,11 @@
     </div>
     <div class="weather-item" title="Humidity">
       <DropletIcon size="1.1x"></DropletIcon>
-      <span class="value">%{{getWeatherInfo.humidity}}</span>
+      <span class="value">{{getWeatherInfo.humidity}}%</span>
     </div>
     <div class="weather-item" title="Cloud">
       <CloudIcon size="1.1x"></CloudIcon>
-      <span class="value">%{{getWeatherInfo.clouds}}</span>
+      <span class="value">{{getWeatherInfo.clouds}}%</span>
     </div>
   </div>
 </template>

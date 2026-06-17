@@ -1,15 +1,16 @@
 import Vue from "vue";
 import Vuex from "vuex";
-// import axios from "axios";
+import axios from "axios";
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    apiBase: "https://api.openweathermap.org/data/2.5/",
-    apiKey: "YOUR_API_KEY",   // Create Api Key from https://openweathermap.org
-    defaultSearch: "istanbul",
-    search: "",
+    // apiBase: "https://api.openweathermap.org/data/2.5/",
+    apiBase: "http://localhost:8000/api/",
+    // apiKey: "YOUR_API_KEY",   // Create Api Key from https://openweathermap.org
+    defaultSearch: "Biñan",
+    search: "Biñan",
     isError: false,
     weatherData: {},
   },
@@ -44,7 +45,7 @@ const store = new Vuex.Store({
   },
   mutations: {
     ["SET_SEARCH"](state, search) {
-      state.search = search.toLowerCase();
+      state.search = search;
     },
     ["SET_WEATHER_DATA"](state, data) {
       state.weatherData = data;
@@ -56,27 +57,28 @@ const store = new Vuex.Store({
   actions: {
     async fetchWeatherData({ commit, state }) {
       try {
-        commit("SET_WEATHER_DATA", state);
+        // commit("SET_WEATHER_DATA", state);
 
-        // commit("SET_SEARCH", search);
-        // const response = await axios.get(
-        //   `${state.apiBase}weather?q=${search}&units=metric&APPID=${state.apiKey}`
-        // );
-        // const newWeatherData = {
-        //   name: response.data.name,
-        //   temp: response.data.main.temp,
-        //   tempMin: response.data.main.temp_min,
-        //   tempMax: response.data.main.temp_max,
-        //   feelsLike: response.data.main.feels_like,
-        //   description: response.data.weather[0].description,
-        //   icon: response.data.weather[0].icon.substring(0, 2),
-        //   info: response.data.weather[0].main,
-        //   wind: response.data.wind.speed,
-        //   humidity: response.data.main.humidity,
-        //   clouds: response.data.clouds.all,
-        //   country: response.data.sys.country,
-        // };
-        // commit("SET_WEATHER_DATA", newWeatherData);
+        commit("SET_SEARCH", state.search);
+        const response = await axios.get(
+          `${state.apiBase}weather/city/${state.search}`
+        );
+
+        const newWeatherData = {
+          // name: response.data.name,
+          temp: response.data.data.temperature,
+          // tempMin: response.data.main.temp_min,
+          // tempMax: response.data.main.temp_max,
+          feelsLike: response.data.data.feels_like,
+          description: response.data.data.description,
+          icon: response.data.data.icon,
+          // info: response.data.weather[0].main,
+          wind: response.data.data.wind_speed,
+          humidity: response.data.data.humidity,
+          clouds: response.data.data.cloud_cover,
+          // country: response.data.sys.country,
+        };
+        commit("SET_WEATHER_DATA", newWeatherData);
         commit("SET_ERROR", false);
       } catch (error) {
         console.log(error);

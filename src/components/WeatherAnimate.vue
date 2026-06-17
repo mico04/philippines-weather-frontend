@@ -3,10 +3,10 @@
     <div
       class="weather-animate"
       :class="[
-      {'weather-rain': getWeatherMain.info == 'Rain'},
-      {'weather-snow': getWeatherMain.info == 'Snow'},
-      {'weather-clear': getWeatherMain.info == 'Clear' || getWeatherMain.info == 'Mist'},
-      {'weather-clouds': getWeatherMain.info == 'Clouds' || getWeatherMain.info == 'Haze'},
+      {'weather-rain': getWeatherMain.icon == '10' || getWeatherMain.icon == '09' || getWeatherMain.icon == '11'},
+      {'weather-snow': getWeatherMain.icon == '13'},
+      {'weather-clear': getWeatherMain.icon == '01' || getWeatherMain.icon == '50'},
+      {'weather-clouds': getWeatherMain.icon == '02' || getWeatherMain.icon == '03' || getWeatherMain.icon == '04'},
       {'error': getError}]"
     ></div>
   </div>
