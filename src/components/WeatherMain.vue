@@ -1,6 +1,11 @@
 <template>
   <div class="weather-main">
     <div class="weather-feelsLike">
+      <strong>
+        {{getWeatherMain.city}}
+      </strong>
+    </div>
+    <div class="weather-feelsLike">
       Feels like
       <strong>
         {{getWeatherMain.feelsLike | round}}

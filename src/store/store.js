@@ -13,17 +13,22 @@ const store = new Vuex.Store({
     search: "Biñan",
     isError: false,
     weatherData: {},
+    philippines_cities: [],
   },
   getters: {
     getWeatherMain(state) {
-      const { temp, feelsLike, description, icon, info } = state.weatherData;
+      const { city, temp, feelsLike, description, icon, info } = state.weatherData;
       return {
+        city,
         temp,
         feelsLike,
         description,
         info,
         icon,
       };
+    },
+    getPhilippineCities(state) {
+      return state.philippines_cities;
     },
     getWeatherInfo(state) {
       const { wind, clouds, humidity } = state.weatherData;
@@ -53,19 +58,22 @@ const store = new Vuex.Store({
     ["SET_ERROR"](state, value) {
       state.isError = value;
     },
+    ["SET_PHILIPPINE_CITIES"](state, cities) {
+      state.philippines_cities = cities;
+    },
   },
   actions: {
-    async fetchWeatherData({ commit, state }) {
+    async fetchWeatherData({ commit, state }, search) {
       try {
         // commit("SET_WEATHER_DATA", state);
 
-        commit("SET_SEARCH", state.search);
+        commit("SET_SEARCH", search);
         const response = await axios.get(
-          `${state.apiBase}weather/city/${state.search}`
+          `${state.apiBase}weather/city/${search}`
         );
 
         const newWeatherData = {
-          // name: response.data.name,
+          city: response.data.data.city,
           temp: response.data.data.temperature,
           // tempMin: response.data.main.temp_min,
           // tempMax: response.data.main.temp_max,
@@ -84,6 +92,15 @@ const store = new Vuex.Store({
         console.log(error);
         commit("SET_ERROR", true);
         commit("SET_WEATHER_DATA", {});
+      }
+    },
+
+    async fetchPhilippineCities({ commit, state }) {
+      try {
+        const response = await axios.get(`${state.apiBase}philippines/cities`);
+        commit("SET_PHILIPPINE_CITIES", response.data.data);
+      } catch (error) {
+        console.log(error);
       }
     },
   },

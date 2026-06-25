@@ -34,12 +34,13 @@ export default {
     GithubIcon
   },
   computed: {
-    ...mapGetters(["isSearched"])
+    ...mapGetters(["isSearched", "getPhilippineCities"])
   },
   methods: {
-    ...mapActions(["fetchWeatherData"]),
+    ...mapActions(["fetchWeatherData", "fetchPhilippineCities"]),
     initData() {
       this.fetchWeatherData(this.$store.state.defaultSearch);
+      this.fetchPhilippineCities();
     }
   },
   created() {

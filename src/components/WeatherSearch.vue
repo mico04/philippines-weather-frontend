@@ -1,4 +1,5 @@
 <template>
+
   <!-- <div class="weather-search">
     <input
       type="text"
@@ -14,7 +15,7 @@
 <div class="weather-search">
   <v-select
     v-model="search"
-    :options="cities"
+    :options="this.getPhilippineCities"
     placeholder="Search City"
     />
     <!-- class="search-control" -->
@@ -44,17 +45,10 @@ export default {
   data() {
     return {
       search: this.$store.state.search,
-      cities: [
-      'Manila',
-      'Cebu',
-      'Davao',
-      'Baguio',
-      'Iloilo'
-    ]
     };
   },
   computed: {
-    ...mapGetters(["isSearched", "getWeatherCountry", "getError"]),
+    ...mapGetters(["isSearched", "getWeatherCountry", "getError", "getPhilippineCities"]),
   },
   watch: {
   search(city) {
