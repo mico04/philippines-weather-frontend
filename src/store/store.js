@@ -7,7 +7,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     // apiBase: "https://api.openweathermap.org/data/2.5/",
-    apiBase: "http://localhost:8000/api/",
+    apiBase: "https://philippines-weather-backend.onrender.com/api/",
     // apiKey: "YOUR_API_KEY",   // Create Api Key from https://openweathermap.org
     defaultSearch: "Biñan",
     search: "Biñan",
