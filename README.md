@@ -1,34 +1,34 @@
 ![weather-app](https://user-images.githubusercontent.com/10329339/81182168-23765980-8fb6-11ea-8be9-464567cb0aa5.gif)
 
+---
+# 🌤️ Philippines Weather App
 
-# philippines-weather-app
-Weather app using Vue.js, OpenWeatherMap. [Demo](https://dogukanbatal.github.io/philippines-weather-app/)
+A modern weather application built with **Vue.js** that displays real-time weather information for cities in the Philippines.
 
-## Project setup
-```
-npm install
-```
-### API Key
-- Create Api Key from [OpenWeatherMap](https://openweathermap.org). 
-- Enter the key on the line below in **src/store/store.js**
-```javascript
-apiKey: "YOUR_API_KEY"
-```
+The application consumes a custom **Laravel REST API** that provides a list of Philippine cities and retrieves weather data for the selected city.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+---
+[Demo](https://philippines-weather-frontend.onrender.com/)
+Cloned frontend (https://github.com/dgknbtl/vue-weather)
 
-### Compiles and minifies for production
-```
-npm run build
-```
+---
+## ✨ Features
 
-### Lints and fixes files
-```
-npm run lint
-```
+- 🇵🇭 Browse Philippine cities
+- 🔍 Search cities quickly
+- 🌦️ View current weather conditions
+- 🌡️ Temperature display
+- 💧 Humidity information
+- 🌬️ Wind speed
+- ☁️ Weather description with icons
+- ⚡ Fast and responsive UI
+- 📱 Mobile-friendly interface
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+---
+
+## 🛠️ Tech Stack
+
+- Vue.js 2
+- Vue Router
+- Axios
+- CSS / Tailwind CSS *(if applicable)*
